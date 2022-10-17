@@ -40,7 +40,7 @@ const addSchema = Joi.object({
   name: Joi.string().min(3).max(30).required(),
   email: Joi.string().email().required(),
   phone: Joi.required(),
-  favorite: Joi.boolean,
+  favorite: Joi.boolean(),
 });
 
 const updateFavoriteSchema = Joi.object({
