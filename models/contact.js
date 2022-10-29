@@ -1,13 +1,13 @@
-const { Schema, model } = require('mongoose');
-const Joi = require('joi');
+const { Schema, model } = require("mongoose");
+const Joi = require("joi");
 
-const { handleSaveErrors, RequestError } = require('../helpers');
+const { handleSaveErrors, RequestError } = require("../helpers");
 
 const contactSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, 'Set name for contact'],
+      required: [true, "Set name for contact"],
     },
     email: {
       type: String,
@@ -22,7 +22,7 @@ const contactSchema = new Schema(
     },
     owner: {
       type: Schema.Types.ObjectId,
-      ref: 'user',
+      ref: "user",
       required: true,
     },
   },
@@ -32,9 +32,9 @@ const contactSchema = new Schema(
   }
 );
 
-contactSchema.post('save', handleSaveErrors);
+contactSchema.post("save", handleSaveErrors);
 
-const Contact = model('contact', contactSchema);
+const Contact = model("contact", contactSchema);
 
 const addSchema = Joi.object({
   name: Joi.string().min(3).max(30).required(),
@@ -47,7 +47,7 @@ const updateFavoriteSchema = Joi.object({
   favorite: Joi.boolean()
     .required()
     .error(() => {
-      throw RequestError(400, 'missing field favorite');
+      throw RequestError(400, "missing field favorite");
     }),
 });
 
